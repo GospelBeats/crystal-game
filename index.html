@@ -1,126 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 </head>
+
 <body>
 
-<div class="container mt-5">
-	<div class="jumbotron mt-5">
-		<h1 class="mb-5">Your Random Number <span id="random-number"></span></h1>
-		
-		<div class="container">
-		<p>Score <span id="score"></span></p>	
-		<br>
-		<p>Wins <span id="wins"></span></p>
-		<p class="mb-5">loses <span id="loses"></span></p>
-	    </div>
-			
-		<div class="crystals row">
-		<div class="col-sm-3 img-fluid"><img id="c1" src="assets/images/c1.png" width="200" height="200" alt="crystal1"></div>
-		<div class="col-sm-3 img-fluid"><img id="c2" src="assets/images/c2.png" width="200" height="200" alt="crystal2"></div>
-		<div class="col-sm-3 img-fluid"><img id="c3" src="assets/images/c3.png" width="200" height="200" alt="crystal3"></div>
-		<div class="col-sm-3 img-fluid"><img id="c4" src="assets/images/c4.png" width="200" height="200" alt="crystal4"></div>
+	<div class="container mt-5">
+		<div class="jumbotron mt-5">
+			<h1 class="mb-5">Your Random Number <span id="random-number"></span></h1>
+
+			<div class="container">
+				<p>Score <span id="score"></span></p>
+				<br>
+				<p>Wins <span id="wins">0</span></p>
+				<p class="mb-5">loses <span id="loses">0</span></p>
+			</div>
+
+			<div class="crystals row">
+				<div class="col-sm-3 img-fluid"><img id="c1" src="assets/images/c1.png" width="200" height="200"
+						alt="crystal1"></div>
+				<div class="col-sm-3 img-fluid"><img id="c2" src="assets/images/c2.png" width="200" height="200"
+						alt="crystal2"></div>
+				<div class="col-sm-3 img-fluid"><img id="c3" src="assets/images/c3.png" width="200" height="200"
+						alt="crystal3"></div>
+				<div class="col-sm-3 img-fluid"><img id="c4" src="assets/images/c4.png" width="200" height="200"
+						alt="crystal4"></div>
+			</div>
 		</div>
 	</div>
-</div>
-	
-<script>
-	
 
-// Score Variables
-let score = 0;
-let wins = 0;
-let losses = 0;
+	<script>
+$(document).ready(function(){
 
-function startGame() {
+		// Score Variables
+		let score = 0;
+		let wins = 0;
+		let losses = 0;
+		let randomNumber = 0;
 
-let score = 0;	
-// Main Random Number
-let	$randomNumber = Math.floor(Math.random() * 120) + 19;
-$("#random-number").text($randomNumber);
-	
-// Crystals Random Numbers stored in variables
-let c1 = Math.floor(Math.random() * 12) + 1;
-	
-let c2 = Math.floor(Math.random() * 12) + 1;
-	
-let c3 = Math.floor(Math.random() * 12) + 1;
-	
-let c4 = Math.floor(Math.random() * 12) + 1;
 
-// Event functions on each crystal
+		function startGame() {
 
-$("#c1").on('click', getRandomNumber);	
-	
-function getRandomNumber(){
-	$("#score").text(score += c1);
-	winLose();
-}
-	
-$("#c2").on('click', getRandomNumber2);	
-	
-function getRandomNumber2(){
-	$("#score").text(score += c2);
-	winLose();
-}
-	
-$("#c3").on('click', getRandomNumber3);	
-	
-function getRandomNumber3(){
-	$("#score").text(score += c3);
-	winLose();
-}
-	
-$("#c4").on('click', getRandomNumber4);	
-	
-function getRandomNumber4(){
-	$("#score").text(score += c4);
-	winLose();
-}
-	
-// Check if the user wins or loses
-function winLose(){
-	
-		if (score === $randomNumber){
-			$("#wins").text(wins++);
-			alert("Congratulations (" + score + " = " + $randomNumber + ") You Won!!!");
-			score = 0;
-			$("#score").text(0);
-			startGame();
+			//score = 0;
+			console.log("the score: " + score);
+			$("#score").html(score);
+			
+			
+			// Main Random Number
+			randomNumber = Math.floor(Math.random() * (120 - 19) + 19);
+			$("#random-number").text(randomNumber);
+			console.log(randomNumber);
+
+			// Crystals Random Numbers stored in variables
+			let c1 = Math.floor(Math.random() * (12 - 1) + 1);
+
+			let c2 = Math.floor(Math.random() * (12 - 1) + 1);
+
+			let c3 = Math.floor(Math.random() * (12 - 1) + 1);
+
+			let c4 = Math.floor(Math.random() * (12 - 1) + 1);
+
+			// Event functions on each crystal
+
+			$("#c1").on('click', getRandomNumber);
+
+			function getRandomNumber() {
+				console.log("the score before c1 click: " + score);
+				var newNumber = score += c1;
+				$("#score").html(newNumber);
+				console.log("the score after c1 click: " + score);
+				winLose();
+				return;
 			}
-		
-		// it doesn't work correct when I use this code
-		// program works without this code 
-		else if (score > $randomNumber) {
-			$("#loses").text(losses++);
-			alert("Sorry (" + score + " is > than" + $randomNumber + ") You Lost!");
-			score = 0;
-			$("#score").text(0);		
-			startGame();
+
+			$("#c2").on('click', getRandomNumber2);
+
+			function getRandomNumber2() {
+				var newNumber = score += c2;
+				$("#score").html(newNumber);
+				winLose();
+				return;
 			}
+
+			$("#c3").on('click', getRandomNumber3);
+
+			function getRandomNumber3() {
+				var newNumber = score += c3;
+				$("#score").html(newNumber);
+				winLose();
+				return;
+			}
+
+			$("#c4").on('click', getRandomNumber4);
+
+			function getRandomNumber4() {
+				var newNumber = score += c4;
+				$("#score").html(newNumber);
+				winLose();
+				return;
+			}
+
+			// Check if the user wins or loses
+			function winLose() {
+
+				// if the answer is correct do this
+				if (score === randomNumber) {
+					$("#wins").text(++wins);
+					alert("Congratulations (" + score + " = " + randomNumber + ") You Won!!!");
+					
+					//$("#score").text(score);
+					score = 0;
+					startGame();
+				}
+
+				// if the answer is wrong do this
+				else if (score > randomNumber) {
+
+					$("#loses").text(++losses);
+					alert("Sorry (" + score + " is > than" + randomNumber + ") You Lost!");
+					score = 0;
+					//$("#score").text(score);
+					startGame();
+					console.log(randomNumber);
+				}
+				return;
+			} // End of winLose function
+				return;
+		}// End of main function
+
+		startGame();
+
+	});
 	
-  } // End of winLose function
-	
-}// End of main function
-
-startGame();
-	
-
-
-
-
-		
-		
-
-   
-
-</script>
+	</script>
 </body>
+
 </html>
